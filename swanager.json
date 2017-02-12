@@ -1,0 +1,8 @@
+{
+    "volumes": [
+        {
+            "src": "PMNEWS",
+            "dest": "/root"
+        }
+    ]
+}
