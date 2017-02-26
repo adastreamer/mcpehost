@@ -6,9 +6,20 @@ RUN echo 'deb http://ftp.us.debian.org/debian/ testing main contrib non-free' >>
 
 RUN apt-get update && apt-get install -y -t testing libc6
 
+VOLUME /root
+
 ADD ./bin /bin/
+
+# the work dir which is going to be the persistent
+# and being populated on the first launch
+# the logic of this behaviour is in the run.sh script
 ADD ./PMNEWS /root
+
+# the initial data for work dir
+ADD ./PMNEWS /PMNEWS
+
+ADD ./run.sh /
 ADD ./start.sh /
 
-ENTRYPOINT ["/start.sh", "-p", "/bin/php7/bin/php", "-f", "/root/PocketMine-MP.phar"]
+CMD ["/run.sh"]
 
